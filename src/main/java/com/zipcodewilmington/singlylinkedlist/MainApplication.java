@@ -1,33 +1,38 @@
 package com.zipcodewilmington.singlylinkedlist;
 
-import static com.zipcodewilmington.singlylinkedlist.SinglyLinkedList.printList;
-import static com.zipcodewilmington.singlylinkedlist.SinglyLinkedList.remove;
+import static com.zipcodewilmington.singlylinkedlist.SinglyLinkedList.*;
 
 /**
  * Created by leon on 1/10/18.
  */
 public class MainApplication {
 
-    public static void main(String ... args){
+    public static void main(String... args) {
         SinglyLinkedList list = new SinglyLinkedList();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        list.add(5);
+        list.add(6);
+        list.add(7);
+        list.add(8);
+        list.add(9);
+        list.add(10);
 
-        list = SinglyLinkedList.add(list, 1);
-        list = SinglyLinkedList.add(list, 2);
-        list = SinglyLinkedList.add(list, 3);
-        list = SinglyLinkedList.add(list, 4);
-        list = SinglyLinkedList.add(list, 5);
-        list = SinglyLinkedList.add(list, 6);
-        list = SinglyLinkedList.add(list, 7);
-        list = SinglyLinkedList.add(list, 8);
-        list = SinglyLinkedList.add(list, 9);
-        list = SinglyLinkedList.add(list, 10);
+      //  list.printList();
 
-        printList(list);
+        // list.remove(4);
 
-        remove(list,0);
+        // printList(list);
 
+        //   list.size();
 
-        printList(list);
+      //  list.contains(5);
+
+        list.get(11);
+
+        //    list.find(10);
 
     }
 
