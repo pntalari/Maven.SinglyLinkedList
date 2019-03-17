@@ -1,5 +1,7 @@
 package com.zipcodewilmington.singlylinkedlist;
 
+import java.util.LinkedList;
+
 /**
  * Created by leon on 1/10/18.
  */
@@ -16,7 +18,27 @@ public class SinglyLinkedList<T> {
         }
     }
 
-// Add element to the LL-Linked List
+    // Clone the LL to a new LL
+    public Object copy() {
+        if (this.head == null) {
+            return null;
+        }
+
+        Node newNode = new Node(this.head.data);
+        newNode.next = this.head.next;
+        newNode.data = this.head.data;
+
+        System.out.println("Original: ");
+        printList(this.head);
+
+        System.out.println("Cloned: ");
+        printList(newNode);
+
+        return newNode;
+    }
+
+
+    // Add element to the LL-Linked List
     public void add(T data) {
         Node newNode = new Node(data);
         newNode.next = null;
@@ -33,8 +55,8 @@ public class SinglyLinkedList<T> {
         }
     }
 
-// Print the LL
-    public void printList() {
+    // Print the LL
+    public void printList(Node head) {
         Node currNode = this.head;
 
         System.out.println("Linked List: ");
@@ -47,7 +69,7 @@ public class SinglyLinkedList<T> {
         System.out.println();
     }
 
-// Return size of the LL
+    // Return size of the LL
     public Integer size() {
         int index = 0;
         Node currentNode = this.head;
@@ -66,7 +88,7 @@ public class SinglyLinkedList<T> {
         return index;
     }
 
-// Find the index of element from LL
+    // Find the index of element from LL
     public Integer find(T data) {
         Node currNode = this.head;
         int index = -1;
@@ -82,11 +104,11 @@ public class SinglyLinkedList<T> {
             }
             currNode = currNode.next;
         }
-        System.out.println("Element " +data+ " found at index: " + index);
+        System.out.println("Element " + data + " found at index: " + index);
         return index;
     }
 
-// Remove an element from the index in LL
+    // Remove an element from the index in LL
     public void remove(int index) {
         Node currNode = this.head, prev = null;
         int counter = 0;
@@ -95,7 +117,7 @@ public class SinglyLinkedList<T> {
             this.head = currNode.next;
 
             System.out.println(index + " position element deleted!");
-            printList();
+            printList(this.head);
 
         }
         while (currNode != null) {
@@ -103,7 +125,7 @@ public class SinglyLinkedList<T> {
                 prev.next = currNode.next;
 
                 System.out.println(index + " position element deleted!");
-                printList();
+                printList(currNode);
                 break;
             } else {
                 prev = currNode;
@@ -117,20 +139,20 @@ public class SinglyLinkedList<T> {
 
     }
 
-// Check if element is present in the LL
+    // Check if element is present in the LL
     public Boolean contains(int data) {
         Node currNode = this.head;
         Boolean result = false;
         int size = this.size();
 
         if (currNode == null) {
-            System.out.println(data + " Element " +data+ " not found!");
+            System.out.println(data + " Element " + data + " not found!");
         }
 
         for (int i = 0; i < size; i++) {
             if (currNode.data.equals(data)) {
                 result = true;
-                System.out.println("Element " +data+ " found at index: " +i);
+                System.out.println("Element " + data + " found at index: " + i);
             }
             currNode = currNode.next;
         }
@@ -139,45 +161,42 @@ public class SinglyLinkedList<T> {
         return result;
     }
 
-// Return the element at index in the LL
+    // Return the element at index in the LL
     public T get(int index) {
-        Node currNode = this.head, prev = null;
+        Node currNode = this.head;
         int counter = 0;
 
         if (index == 0 && currNode != null) {
 
-            System.out.println("Element at position " +index+ " is: " +currNode.data);
-            printList();
+            System.out.println("Element at position " + index + " is: " + currNode.data);
+            printList(currNode);
             return (T) currNode.data;
 
         }
         while (currNode != null) {
             if (counter == index) {
 
-                System.out.println("Element at position " +index+ " is: " +currNode.data);
-                printList();
+                System.out.println("Element at position " + index + " is: " + currNode.data);
+                printList(currNode);
                 return (T) currNode.data;
 
             } else {
-                prev = currNode;
+                //  prev = currNode;
                 currNode = currNode.next;
                 counter++;
             }
         }
 
         if (currNode == null) {
-            System.out.println("No element found at index " +index);
+            System.out.println("No element found at index " + index);
         }
         return null;
     }
 
-//
-    public void copy() {
 
-    }
-
-//
+    //
     public void sort() {
 
     }
+
 }

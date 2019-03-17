@@ -20,7 +20,7 @@ public class MainApplication {
         list.add(9);
         list.add(10);
 
-      //  list.printList();
+        //  list.printList();
 
         // list.remove(4);
 
@@ -28,9 +28,11 @@ public class MainApplication {
 
         //   list.size();
 
-      //  list.contains(5);
+        //  list.contains(5);
 
-        list.get(11);
+        // list.get(8);
+
+        list.copy();
 
         //    list.find(10);
 
