@@ -1,11 +1,11 @@
 package com.zipcodewilmington.singlylinkedlist;
 
-import java.util.LinkedList;
+import java.util.Comparator;
 
 /**
  * Created by leon on 1/10/18.
  */
-public class SinglyLinkedList<T> {
+public class SinglyLinkedList <T> implements Comparator<T> {
     Node head;
 
     private class Node<T> {
@@ -16,25 +16,6 @@ public class SinglyLinkedList<T> {
             this.data = element;
             this.next = null;
         }
-    }
-
-    // Clone the LL to a new LL
-    public Object copy() {
-        if (this.head == null) {
-            return null;
-        }
-
-        Node newNode = new Node(this.head.data);
-        newNode.next = this.head.next;
-        newNode.data = this.head.data;
-
-        System.out.println("Original: ");
-        printList(this.head);
-
-        System.out.println("Cloned: ");
-        printList(newNode);
-
-        return newNode;
     }
 
 
@@ -193,10 +174,92 @@ public class SinglyLinkedList<T> {
         return null;
     }
 
+    // Shallow copy of the LL to a new LL
+    public Object copy() {
+        if (this.head == null) {
+            return null;
+        }
 
-    //
-    public void sort() {
+        Node newNode = new Node(this.head.data);
+        newNode.next = this.head.next;
+        newNode.data = this.head.data;
+
+        System.out.println("Original: ");
+        printList(this.head);
+
+        System.out.println("Cloned: ");
+        printList(newNode);
+
+        return newNode;
+    }
+
+
+    //Sort the LL using Merge Sort Algorithm
+    public Node sort(Node head) {
+        if (head == null || head.next == null) {
+            return null;
+        }
+        Node middleNode = getMiddle(head);
+        Node nextOfMiddle = middleNode.next;
+
+        middleNode.next = null;
+
+        Node left = sort(head);
+        Node right = sort(nextOfMiddle);
+
+        Node sortedList = mergeSort(left,right);
+
+        return sortedList;
 
     }
+
+    private Node mergeSort(Node a, Node b){
+        Node result = null;
+
+        if(a==null)
+            return b;
+        if(b==null)
+            return a;
+
+        int compareResult = compare((T)a.data, (T)b.data);
+
+        if(compareResult==-1 || compareResult==0)
+        {
+            result = a;
+            result.next = mergeSort(a.next,b);
+        }
+        else {
+            result = b;
+            result.next = mergeSort(a, b.next);
+        }
+
+        return result;
+    }
+
+
+    private Node getMiddle(Node head) {
+        if (head == null) {
+            return head;
+        }
+        Node firstPointer = this.head.next;
+        Node secondPointer = this.head;
+
+        while (firstPointer!=null){
+            firstPointer = firstPointer.next;
+            if (firstPointer!=null){
+                secondPointer = secondPointer.next;
+                firstPointer = firstPointer.next;
+            }
+        }
+        return secondPointer;
+
+    }
+
+    @Override
+    public int compare(T o1, T o2) {
+        return o1.toString().compareTo(o2.toString());
+
+    }
+
 
 }

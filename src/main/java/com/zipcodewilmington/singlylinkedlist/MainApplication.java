@@ -20,21 +20,25 @@ public class MainApplication {
         list.add(9);
         list.add(10);
 
-        //  list.printList();
+        list.printList(list.head);
 
         // list.remove(4);
 
         // printList(list);
 
-        //   list.size();
+        // list.size();
 
-        //  list.contains(5);
+        // list.contains(5);
 
         // list.get(8);
 
-        list.copy();
+        // list.copy();
 
-        //    list.find(10);
+        list.head = list.sort(list.head);
+
+        list.printList(list.head);
+
+        // list.find(10);
 
     }
 
