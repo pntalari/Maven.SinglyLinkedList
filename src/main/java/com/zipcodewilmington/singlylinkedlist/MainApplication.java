@@ -9,6 +9,7 @@ public class MainApplication {
 
     public static void main(String... args) {
         SinglyLinkedList list = new SinglyLinkedList();
+        list.add(10);
         list.add(1);
         list.add(2);
         list.add(3);
@@ -18,7 +19,7 @@ public class MainApplication {
         list.add(7);
         list.add(8);
         list.add(9);
-        list.add(10);
+
 
         list.printList(list.head);
 
@@ -34,7 +35,7 @@ public class MainApplication {
 
         // list.copy();
 
-        list.head = list.sort(list.head);
+        list.sort(list.head);
 
         list.printList(list.head);
 
