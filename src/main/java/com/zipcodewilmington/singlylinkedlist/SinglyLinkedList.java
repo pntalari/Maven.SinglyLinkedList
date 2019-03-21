@@ -5,7 +5,7 @@ import java.util.Comparator;
 /**
  * Created by leon on 1/10/18.
  */
-public class SinglyLinkedList <T> implements Comparator {
+public class SinglyLinkedList<T> implements Comparator<T> {
     Node head;
     Node sorted = null;
 
@@ -177,7 +177,7 @@ public class SinglyLinkedList <T> implements Comparator {
     }
 
     // Shallow copy of the LL to a new LL
-    public Object copy() {
+    public Node<T> copy() {
         if (this.head == null) {
             return null;
         }
@@ -197,10 +197,10 @@ public class SinglyLinkedList <T> implements Comparator {
 
 
     //Sort the LL using Insertion Sort Algorithm
-    public void sort(Node head){
+    public void sort(Node head) {
 
         Node current = head;
-        while (current!=null){
+        while (current != null) {
             Node next = current.next;
             sortedInsert(current);
             current = next;
@@ -210,16 +210,14 @@ public class SinglyLinkedList <T> implements Comparator {
 
     private void sortedInsert(Node newNode) {
 
-        if(sorted == null || compare(sorted.data,newNode.data) == 1
-                || compare(sorted.data, newNode.data) == 0) {
+        if (sorted == null || (sorted.data).equals(newNode.data)
+                || compare(sorted.data, newNode.data) == 1) {
             newNode.next = sorted;
             sorted = newNode;
-        }
-        else {
+        } else {
             Node current = sorted;
-            while (current.next!=null &&
-                    -1 == compare(current.next.data,newNode.data))
-            {
+            while (current.next != null &&
+                    -1 == compare(current.next.data, newNode.data)) {
                 current = current.next;
             }
             newNode.next = current.next;
@@ -229,75 +227,16 @@ public class SinglyLinkedList <T> implements Comparator {
 
     @Override
     public int compare(Object o1, Object o2) {
-        return 0;
+
+        int compare = o1.toString().compareTo(o2.toString());
+        if (compare > 0)
+            return 1;
+        else if (compare < 0)
+            return -1;
+            else if (compare == 0)
+                return 0;
+            return  0;
+        }
     }
 
 
-//    public Node sort(Node head) {
-//        if (head == null || head.next == null) {
-//            return null;
-//        }
-//        Node middleNode = getMiddle(head);
-//        Node nextOfMiddle = middleNode.next;
-//
-//        middleNode.next = null;
-//
-//        Node left = sort(head);
-//        Node right = sort(nextOfMiddle);
-//
-//        Node sortedList = mergeSort(left,right);
-//
-//        return sortedList;
-//
-//    }
-//
-//    private Node mergeSort(Node a, Node b){
-//        Node result = null;
-//
-//        if(a==null)
-//            return b;
-//        if(b==null)
-//            return a;
-//
-//        int compareResult = compare((T)a.data, (T)b.data);
-//
-//        if(compareResult==-1 || compareResult==0)
-//        {
-//            result = a;
-//            result.next = mergeSort(a.next,b);
-//        }
-//        else {
-//            result = b;
-//            result.next = mergeSort(a, b.next);
-//        }
-//
-//        return result;
-//    }
-//
-//
-//    private Node getMiddle(Node head) {
-//        if (head == null) {
-//            return head;
-//        }
-//        Node firstPointer = this.head.next;
-//        Node secondPointer = this.head;
-//
-//        while (firstPointer!=null){
-//            firstPointer = firstPointer.next;
-//            if (firstPointer!=null){
-//                secondPointer = secondPointer.next;
-//                firstPointer = firstPointer.next;
-//            }
-//        }
-//        return secondPointer;
-//
-//    }
-//
-//    @Override
-//    public int compare(T o1, T o2) {
-//        return o1.toString().compareTo(o2.toString());
-//
-//    }
-
-
-}
